@@ -12,6 +12,10 @@ namespace _sideproject_mergedropper
 {
     public partial class Form1 : Form
     {
+            int fall;
+            bool crossLeft, crossRight;
+            int crosshairSpeed = 10;
+        
 
         public Form1()
         {
@@ -28,12 +32,59 @@ namespace _sideproject_mergedropper
             
             if (e.KeyCode == Keys.Left) 
             {
-                pnlCrosshair.Left -= 10;
+                crossLeft = true;
             }
-            else if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right)
             {
-                pnlCrosshair.Left += 10;
+                crossRight = true;
             }
+            if ((e.KeyCode == Keys.Space))
+            {
+                fallMovement();
+            }
+
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                crossLeft = false;
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                crossRight = false;
+            }
+            if ((e.KeyCode == Keys.Space))
+            {
+            }
+        }
+
+        private void tmrmain_Tick(object sender, EventArgs e)
+        {
+;
+            
+
+            if (crossLeft == true && pnlCrosshair.Left > 133)
+            {
+                pnlCrosshair.Left -= crosshairSpeed;
+            }
+            if(crossRight == true && pnlCrosshair.Left + (pnlCrosshair.Width + 40) < this.ClientSize.Width)
+            {
+                pnlCrosshair.Left += crosshairSpeed;
+            }
+ 
+        }
+
+        private void fallMovement()
+        {
+            pbNamNam.Top = fall;
+            fall = 440;
+        }
+
+        private void fellasUpgrade()
+        {
+            
         }
     }
 }
