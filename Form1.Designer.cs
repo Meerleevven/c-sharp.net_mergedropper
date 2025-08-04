@@ -126,7 +126,6 @@
             this.pbMonkol.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMonkol.TabIndex = 6;
             this.pbMonkol.TabStop = false;
-            this.pbMonkol.Visible = false;
             // 
             // pbElbowpad
             // 

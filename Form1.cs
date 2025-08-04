@@ -15,7 +15,7 @@ namespace _sideproject_mergedropper
             int fall;
             bool crossLeft, crossRight;
             int crosshairSpeed = 10;
-        
+            List<PictureBox> theFellas = new List<PictureBox>();
 
         public Form1()
         {
@@ -25,6 +25,8 @@ namespace _sideproject_mergedropper
         private void Form1_Load(object sender, EventArgs e)
         {
             Height = 575;
+            fellas();
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -40,7 +42,7 @@ namespace _sideproject_mergedropper
             }
             if ((e.KeyCode == Keys.Space))
             {
-                fallMovement();
+                
             }
 
         }
@@ -62,8 +64,9 @@ namespace _sideproject_mergedropper
 
         private void tmrmain_Tick(object sender, EventArgs e)
         {
-;
-            
+            pbNamNam.Top = fall;
+            fall = 440;
+
 
             if (crossLeft == true && pnlCrosshair.Left > 133)
             {
@@ -78,13 +81,22 @@ namespace _sideproject_mergedropper
 
         private void fallMovement()
         {
-            pbNamNam.Top = fall;
-            fall = 440;
+
         }
 
-        private void fellasUpgrade()
+        private void fellas()
         {
-            
+            theFellas.Add(pbNamNam);
+            theFellas.Add(pbMonkol);
+            theFellas.Add(pbElbowpad);
+            theFellas.Add(pbHandwraps);
+            theFellas.Add(pbWaikru);
+            theFellas.Add(pbBoxinggloves);
+            theFellas.Add(pbShinguards);
+            theFellas.Add(pbThaipads);
+            theFellas.Add(pbBoxingbag);
+            theFellas.Add(pbBoxingring);
+
         }
     }
 }
