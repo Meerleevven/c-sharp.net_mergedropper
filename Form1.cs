@@ -13,6 +13,7 @@ namespace _sideproject_mergedropper
     public partial class Form1 : Form
     {
             int fall;
+            int currentfella = 0;
             bool crossLeft, crossRight;
             int crosshairSpeed = 10;
             List<PictureBox> theFellas = new List<PictureBox>();
@@ -24,9 +25,15 @@ namespace _sideproject_mergedropper
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             Height = 575;
             fellas();
+            foreach (PictureBox fellas in theFellas)
+            {
+                fellas.Visible = false;
+                fellas.Top = fall;
 
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -40,15 +47,19 @@ namespace _sideproject_mergedropper
             {
                 crossRight = true;
             }
-            if ((e.KeyCode == Keys.Space))
+            if ((e.KeyCode == Keys.Space && currentfella < theFellas.Count))
             {
-                
+               PictureBox dropfella = theFellas[currentfella];
+                dropfella.Visible = true;
+                dropfella.Top = fall;
+                currentfella++;
             }
 
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Left)
             {
                 crossLeft = false;
@@ -64,9 +75,7 @@ namespace _sideproject_mergedropper
 
         private void tmrmain_Tick(object sender, EventArgs e)
         {
-            pbNamNam.Top = fall;
             fall = 440;
-
 
             if (crossLeft == true && pnlCrosshair.Left > 133)
             {
