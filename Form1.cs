@@ -14,6 +14,8 @@ namespace _sideproject_mergedropper
     {
             int fall;
             int currentfella = 0;
+            int fallfellas = 10;
+            bool falling;
             bool crossLeft, crossRight;
             int crosshairSpeed = 10;
             List<PictureBox> theFellas = new List<PictureBox>();
@@ -32,7 +34,8 @@ namespace _sideproject_mergedropper
             {
                 fellas.Visible = false;
                 fellas.Top = fall;
-
+                theFellas[0].Visible = true;
+                
             }
         }
 
@@ -47,12 +50,9 @@ namespace _sideproject_mergedropper
             {
                 crossRight = true;
             }
-            if ((e.KeyCode == Keys.Space && currentfella < theFellas.Count))
+            if ((e.KeyCode == Keys.Space))
             {
-               PictureBox dropfella = theFellas[currentfella];
-                dropfella.Visible = true;
-                dropfella.Top = fall;
-                currentfella++;
+                falling = true;
             }
 
         }
@@ -70,26 +70,35 @@ namespace _sideproject_mergedropper
             }
             if ((e.KeyCode == Keys.Space))
             {
+                falling = false;
             }
         }
 
         private void tmrmain_Tick(object sender, EventArgs e)
         {
             fall = 440;
+            PictureBox fellas = theFellas[currentfella];
 
             if (crossLeft == true && pnlCrosshair.Left > 133)
             {
+                fellas.Left = pnlCrosshair.Left;
                 pnlCrosshair.Left -= crosshairSpeed;
             }
             if(crossRight == true && pnlCrosshair.Left + (pnlCrosshair.Width + 40) < this.ClientSize.Width)
             {
+                fellas.Left = pnlCrosshair.Left;
                 pnlCrosshair.Left += crosshairSpeed;
             }
- 
-        }
 
-        private void fallMovement()
-        {
+            if (falling == true && currentfella < theFellas.Count)
+            {
+                fellas.Top = fall;
+                currentfella++;
+                fellas.Visible = true;
+                fellas.Top += fallfellas;
+
+
+            }
 
         }
 
